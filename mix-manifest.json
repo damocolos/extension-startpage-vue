@@ -1,0 +1,8 @@
+{
+    "/dist/js/background.js": "/dist/js/background.js",
+    "/dist/js/app.js": "/dist/js/app.js",
+    "/dist/css/app.css": "/dist/css/app.css",
+    "/dist/images/ocean_128.png": "/dist/images/ocean_128.png",
+    "/dist/images/ocean_16.png": "/dist/images/ocean_16.png",
+    "/dist/images/ocean_48.png": "/dist/images/ocean_48.png"
+}
