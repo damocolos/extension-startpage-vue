@@ -3,17 +3,15 @@
     "version": "1.0.0",
     "description": "Start Page New Tab",
     "permissions": [
-        "tabs",
-        "topSites",
         "storage"
     ],
     "chrome_url_overrides": {
         "newtab": "app.html"
     },
     "icons": {
-        "16": "images/ocean_16.png",
-        "48": "images/ocean_48.png",
-        "128": "images/ocean_128.png"
+        "16": "images/star_16.png",
+        "48": "images/star_48.png",
+        "128": "images/star_128.png"
     },
     "background": {
         "service_worker": "js/background.js"
