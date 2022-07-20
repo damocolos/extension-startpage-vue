@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { getSpaceStar, updateSpaceStar, addSpaceStar } from '../utils/api.js';
+
 export default {
   name: 'App',
   data() {
@@ -56,17 +58,25 @@ export default {
       importData: '',
     };
   },
-  created() {
+  async created() {
     chrome.storage.sync.get(['siteList'], (result) => {
       this.list = result.siteList;
       this.importData = JSON.stringify(result.siteList);
     });
+
+    const stars = await getSpaceStar();
+    if (stars && stars.length) {
+      const data = stars.map((s) => s.data);
+      this.list = data;
+      this.importData = JSON.stringify(data);
+      this.onSave();
+    }
   },
   methods: {
     togglePopup() {
       this.showPopupSetting = !this.showPopupSetting;
     },
-    onAdd() {
+    async onAdd() {
       this.list.push({
         name: '',
         class: '',
@@ -76,7 +86,15 @@ export default {
     onRemove(item) {
       this.list = this.list.filter((i) => i !== item);
     },
-    onSave() {
+    async onSave() {
+      // for (const data of this.list) {
+      //   await addSpaceStar({
+      //     json: JSON.stringify({
+      //       ...data,
+      //       created_at: new Date().toISOString(),
+      //     }),
+      //   });
+      // }
       chrome.storage.sync.set(
         {
           siteList: this.list,

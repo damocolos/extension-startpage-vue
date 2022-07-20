@@ -2,6 +2,10 @@
     "name": "Start Page",
     "version": "1.0.0",
     "description": "Start Page New Tab",
+    "host_permissions": [
+        "https://resilient-cat-092f6d.netlify.app/*",
+        "http://localhost:9000/.netlify/functions/api/*"
+    ],
     "permissions": [
         "storage"
     ],
