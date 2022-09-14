@@ -2,24 +2,30 @@
 chrome.runtime.onInstalled.addListener(function () {
   chrome.storage.sync.set(
     {
-      siteList: [],
+      shortcuts: [],
+      shortcutOrder: '',
     },
     function () {}
   );
 });
 
 // set up initial chrome storage values
-var siteList = [];
+var shortcuts = [];
+var shortcutOrder = '';
 
-chrome.storage.sync.get(['siteList'], function (result) {
-  siteList = result.siteList;
+chrome.storage.sync.get(['shortcuts', 'shortcutOrder'], function (result) {
+  shortcuts = result.shortcuts;
+  shortcutOrder = result.shortcutOrder;
 });
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
   if (namespace === 'sync') {
-    if (changes.siteList) {
-      siteList = changes.siteList.newValue;
+    if (changes.shortcuts) {
+      shortcuts = changes.shortcuts.newValue;
+    }
+    if (changes.shortcutOrder) {
+      shortcutOrder = changes.shortcutOrder.newValue;
     }
   }
 });

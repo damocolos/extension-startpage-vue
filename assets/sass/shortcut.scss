@@ -1,0 +1,261 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+$black: #18191c;
+$white: #efffef;
+
+body {
+  font-size: 1.2rem;
+  background: $black;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  // font-family: "Source Sans Pro", "Arial", sans-serif;
+  font-family: 'Gudea', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+section {
+  width: 100%;
+  display: flex;
+}
+
+.draggable {
+  width: 100%;
+  display: flex;
+}
+
+.container {
+  margin: auto;
+  width: 85%;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(6, 1fr);
+
+  @media screen and (max-width: 1200px) {
+    grid-gap: 1.5rem;
+    width: 95%;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-gap: 1rem;
+    width: 95%;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    font-size: 1.25rem;
+  }
+}
+
+.button {
+  background: #2a2b2c;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.popup-setting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: $black;
+  overflow-y: scroll;
+
+  &-content {
+    width: 85%;
+    margin-left: 7.5%;
+    padding: 20px 0px;
+  }
+
+  table {
+    width: 100%;
+    color: $white;
+    margin-top: 20px;
+
+    td {
+      padding: 5px;
+    }
+  }
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+
+  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+button.setting-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+}
+
+.fly-button {
+  position: fixed !important;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  label {
+    color: $white;
+    margin-right: 2px;
+  }
+
+  .vs-switch {
+    margin-right: 10px;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  background-color: #ffffff14;
+
+  button {
+    margin: 5px;
+  }
+}
+
+.shortcut-wrapper {
+  position: relative;
+}
+
+// input,
+// textarea {
+//   width: 100%;
+//   padding: 8px;
+//   background: #4c4c4c;
+//   outline: none;
+//   border: none;
+//   font-size: 0.8em;
+//   border-radius: 5px;
+//   color: white;
+// }
+
+a {
+  padding: 25% 0;
+  text-align: center;
+
+  color: $white;
+  background: darken($black, 2%);
+  border: 1px solid darken($black, 3.5%);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 3px;
+
+  transition: 0.1s ease-in all;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+
+  position: relative;
+
+  &:hover {
+    background: lighten($black, 2.5%);
+  }
+
+  &::after {
+    content: '';
+    font-size: 0.6em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding: 5px 0px;
+    transition: 0.1s ease-in all;
+  }
+
+  &.staging::after {
+    content: 'STAGING';
+    color: #1a71ae;
+  }
+
+  &.uat::after {
+    content: 'UAT';
+    color: #468629;
+  }
+
+  &.production::after {
+    content: 'PRODUCTION';
+    color: #db2230;
+  }
+}
+
+
+$webpages: (odoo: #875a7b,
+  couchdb: #91706e,
+  sailfish: #43bb9d,
+  kibana: #11deab,
+  nomad: #11deab,
+  flagr: #4dc6f2,
+  dokun: #E9FFF5,
+  whimsical: #8313DD,
+  bitbucket: #157aec,
+  feedhub: #0292BF,
+  dashmerch: #11deab,
+  gather: #4a5592,
+  ffms: #11deab,
+  notion: #ffffff,
+);
+
+@function contrast-color($bg-color, $dark-color:$black, $light-color:$white, $threshold:70) {
+  @if (lightness($bg-color) > $threshold) {
+    @return $dark-color;
+  }
+
+  @else {
+    @return $light-color;
+  }
+}
+
+@each $page,
+$color in $webpages {
+  .#{$page} {
+    color: $color;
+
+    &:hover {
+      border-color: darken($color, 10%);
+      background-color: $color;
+      color: contrast-color($color);
+
+      &::after {
+        color: contrast-color($color);
+      }
+    }
+  }
+}

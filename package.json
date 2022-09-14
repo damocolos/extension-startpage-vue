@@ -19,6 +19,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "axios": "^0.27.2"
+        "axios": "^0.27.2",
+        "firebase": "^9.9.1",
+        "vuedraggable": "^2.24.3",
+        "vuesax": "3.11.13"
     }
 }

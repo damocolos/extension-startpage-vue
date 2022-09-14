@@ -7,6 +7,7 @@ mix
   .js('assets/js/app.js', 'dist/js')
   .vue()
   .copy('assets/images/', 'dist/images')
+  .copy('assets/font/', 'dist/font')
   .options({
     processCssUrls: false,
   });
