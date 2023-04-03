@@ -14,7 +14,7 @@ $black: #18191c;
 $white: #efffef;
 
 body {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   background: $black;
   margin: auto;
   height: 100vh;
@@ -33,24 +33,23 @@ section {
 
 .draggable {
   width: 100%;
-  display: flex;
+  // display: flex;
+  margin-top: 20px;
 }
 
 .container {
   margin: auto;
   width: 85%;
   display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
 
   @media screen and (max-width: 1200px) {
-    grid-gap: 1.5rem;
     width: 95%;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media screen and (max-width: 768px) {
-    grid-gap: 1rem;
     width: 95%;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     font-size: 1.25rem;
@@ -163,7 +162,7 @@ button.setting-toggle {
 // }
 
 a {
-  padding: 25% 0;
+  padding: .5rem .5rem;
   text-align: center;
 
   color: $white;
@@ -178,10 +177,9 @@ a {
   text-decoration-skip: ink;
   text-decoration-skip-ink: auto;
 
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
+  width: 100%;
+  display: inline-block;
+  text-align: left;
 
   position: relative;
 
@@ -190,13 +188,11 @@ a {
   }
 
   &::after {
-    content: '';
+    content: "";
     font-size: 0.6em;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    padding: 5px 0px;
+    right: 0.5rem;
+    line-height: 1rem;
     transition: 0.1s ease-in all;
   }
 

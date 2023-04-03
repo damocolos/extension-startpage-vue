@@ -5,7 +5,7 @@
         {{ label }}
       </span>
       <vs-button
-        v-if="nextAction != ''"
+        v-if="showButton"
         :color="color"
         size="small"
         type="filled"
@@ -28,6 +28,7 @@ export default {
     return {
       label: 'getting data ...',
       color: 'warning',
+      showButton: false,
       nextAction: '',
     };
   },
@@ -82,6 +83,7 @@ export default {
           this.nextAction = 'clockin';
         }
       }
+      this.showButton = this.nextAction != '';
     },
     onLiveAttendanceConfirm() {
       this.$vs.dialog({
@@ -93,6 +95,8 @@ export default {
     },
     async onLiveAttendance() {
       if (this.nextAction === '') return;
+      this.label = 'processing...';
+      this.showButton = false;
       try {
         if (this.nextAction === 'clockin') {
           await postLiveAttendance('checkin');

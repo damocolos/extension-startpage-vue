@@ -1,7 +1,6 @@
 export const config = {
   talentaConfig: {
-    authCookie:
-      '_identity=147cf0afb4ca7a05efe9e814a91563bc2a429eced6868eb03add4a5f60ffe1eca%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A19%3A%22%5B923582%2Cnull%2C10800%5D%22%3B%7D',
+    authCookie: 'PHPSESSID=e0c1687a555a52c9e8bed5e68ba67924',
     latitude: '-7.495173',
     longitude: '110.812723',
   },

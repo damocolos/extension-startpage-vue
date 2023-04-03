@@ -7,7 +7,7 @@
           v-for="(item, index) of shortcuts"
           v-bind:key="'form-' + index"
         >
-          <a :href="item.url" :class="item.class">{{ item.name }} </a>
+          <a :href="item.url" :class="item.class">{{ item.name }}</a>
           <div class="button-wrapper" v-if="editMode">
             <div>
               <vs-button
